@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm prune && ./node_modules/.bin/prova -b -q -e -l chrome test/index.js",
     "tdd": "./node_modules/.bin/prova -b -e -l chrome test/index.js",
-    "publishPrep": "./node_modules/.bin/dmn gen .; ./node_modules/.bin/doctoc README.md; ./node_modules/.bin/doctoc CONTRIBUTING.md; git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'"
+    "prepublish": "./node_modules/.bin/gulp gitPrep && npm prune && ./node_modules/.bin/dmn gen -f . && ./node_modules/.bin/doctoc README.md && ./node_modules/.bin/doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi && npm test"
   },
   "authors": [
     {
