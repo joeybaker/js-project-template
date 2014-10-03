@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm prune && ./node_modules/.bin/prova -b -q -e -l chrome test/index.js",
     "tdd": "./node_modules/.bin/prova -b -e -l chrome test/index.js",
-    "prepublish": "./node_modules/.bin/gulp gitPrep && npm prune && ./node_modules/.bin/dmn gen -f . && ./node_modules/.bin/doctoc README.md && ./node_modules/.bin/doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi && npm test"
+    "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394",
+    "prePublish": "./node_modules/.bin/gulp gitPrep && npm prune && ./node_modules/.bin/dmn gen -f . && ./node_modules/.bin/doctoc README.md && ./node_modules/.bin/doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi"
   },
   "authors": [
     {

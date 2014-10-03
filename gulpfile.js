@@ -91,6 +91,11 @@ gulp.task('gitPush', function(done){
     .end()
 })
 
+gulp.task('prePublish', function(done){
+  require('child_process').spawn('npm', ['run', 'prePublish'], {stdio: 'inherit', cwd: __dirname})
+    .on('close', done)
+})
+
 gulp.task('npmPublish', function(done){
   require('child_process').spawn('npm', ['publish'], {stdio: 'inherit', cwd: __dirname})
     .on('close', done)
@@ -102,6 +107,7 @@ gulp.task('publish', function(done){
     , 'gitPull'
     , 'gitPrep'
     , ['lint', 'test']
+    , 'prePublish'
     , 'version'
     , ['gitPush', 'npmPublish']
     , done
