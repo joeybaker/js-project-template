@@ -10,3 +10,6 @@ test/*
 .npmignore
 CONTRIBUTING.*
 Gulpfile.js
+
+
+npm-debug.log
