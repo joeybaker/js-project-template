@@ -7,7 +7,7 @@
     "test": "npm prune && ./node_modules/.bin/prova -b -q -e -l chrome test/index.js",
     "tdd": "./node_modules/.bin/prova -b -e -l chrome test/index.js",
     "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394",
-    "prePublish": "./node_modules/.bin/gulp gitPrep && npm prune && ./node_modules/.bin/dmn gen -f . && ./node_modules/.bin/doctoc README.md && ./node_modules/.bin/doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi"
+    "prePublish": "./node_modules/.bin/gulp gitPrep && npm prune && ./node_modules/.bin/nsp audit-package && ./node_modules/.bin/dmn gen -f . && ./node_modules/.bin/doctoc README.md && ./node_modules/.bin/doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi"
   },
   "authors": [
     {
@@ -33,6 +33,7 @@
     "gulp-util": "~2.2.14",
     "jshint-stylish": "^0.2.0",
     "minimist": "^0.1.0",
+    "nsp": "^0.4.2",
     "prova": "^1.9.0",
     "run-sequence": "^0.3.6"
   }
