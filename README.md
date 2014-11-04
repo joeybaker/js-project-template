@@ -44,9 +44,13 @@ To publish, run `npm run release -- patch/minor/major`
 
 _NOTE: you might need to `sudo ln -s /usr/local/bin/node /usr/bin/node` to ensure node is in your path for the git hooks to work_
 
+### Requirements
+* **npm > 2.0.0** So that passing args to a npm script will work. `npm i -g npm`
+* **git > 1.8.3** So that `git push --follow-tags` will work. `brew install git`
+
 ## TODO
-* [ ] integrate https://github.com/inikulin/dmn
-* [ ] integrate https://github.com/thlorenz/doctoc
+* [x] integrate https://github.com/inikulin/dmn
+* [x] integrate https://github.com/thlorenz/doctoc
 
 ## Changelog
 ### 1.0.0
