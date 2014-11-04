@@ -12,6 +12,7 @@
 - [Usage](#usage)
 - [Methods](#methods)
 - [Events](#events)
+  - [myEvent `(<String> myString)`](#myevent-string-mystring)
 - [Tests](#tests)
 - [Developing](#developing)
   - [Requirements](#requirements)
