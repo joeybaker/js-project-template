@@ -34,6 +34,8 @@ var {{camelName}} = require('{{name}}')
 ## Methods
 
 ## Events
+### myEvent `(<String> myString)`
+Emitted when x happens. Passes `myString` which is a y.
 
 ## Tests
 Tests are [prova](https://github.com/azer/prova), based on [tape](https://github.com/substack/tape). They can be run with `npm test`.
