@@ -40,7 +40,9 @@ Tests are [prova](https://github.com/azer/prova), based on [tape](https://github
 Tests can be run in a loop with `npm run tdd`
 
 ## Developing
-To publish, run `gulp publish --bump=patch`
+To publish, run `npm run release -- patch/minor/major`
+
+_NOTE: you might need to `sudo ln -s /usr/local/bin/node /usr/bin/node` to ensure node is in your path for the git hooks to work_
 
 ## TODO
 * [ ] integrate https://github.com/inikulin/dmn

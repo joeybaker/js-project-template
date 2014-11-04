@@ -4,10 +4,20 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm prune && ./node_modules/.bin/prova -b -q -e -l chrome test/index.js",
-    "tdd": "./node_modules/.bin/prova -b -e -l chrome test/index.js",
+    "test": "#prova -b -q -e -l chrome test/index.js",
+    "tdd": "prova -b -e -l chrome test/index.js",
     "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394",
-    "prePublish": "./node_modules/.bin/gulp gitPrep && npm prune && ./node_modules/.bin/nsp audit-package && ./node_modules/.bin/dmn gen -f . && ./node_modules/.bin/doctoc README.md && ./node_modules/.bin/doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi"
+    "prePublish": "npm run requireGitClean && npm prune && npm run nsp && npm run dmn && npm run doctoc",
+    "jscs": "jscs .",
+    "jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js",
+    "lint": "npm run jshint && npm run jscs",
+    "requireGitClean": "source ./scripts.sh && git_require_clean_work_tree",
+    "nsp": "nsp audit-package",
+    "dmn": "dmn gen -f .",
+    "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi",
+    "gitPull": "git pull --rebase origin master",
+    "gitPush": "git push --follow-tags",
+    "release": "npm run lint && npm run prePublish && npm run gitPull && npm version $@ && npm run gitPush && npm publish"
   },
   "authors": [
     {
@@ -16,25 +26,25 @@
       "url": "https://byjoeybaker.com"
     }
   ],
+  "config": {
+    "notes": "important to correct the path of npm so that the git hook doesn't error",
+    "ghooks": {
+      "pre-commit": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm run lint",
+      "pre-push": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm test && npm run nsp && npm run dmn",
+      "update": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm install"
+    }
+  },
   "license": "Artistic-2.0",
   "main": "index.js",
   "browser": "index.js",
   "devDependencies": {
     "dmn": "^1.0.5",
     "doctoc": "^0.7.1",
-    "gulp": "^3.6.2",
-    "gulp-bump": "^0.1.8",
-    "gulp-cached": "0.0.3",
-    "gulp-exec": "^2.0.1",
-    "gulp-git": "^0.4.2",
-    "gulp-jscs": "^0.5.0",
-    "gulp-jshint": "^1.6.1",
-    "gulp-todo": "^0.1.10",
-    "gulp-util": "~2.2.14",
-    "jshint-stylish": "^0.2.0",
-    "minimist": "^0.1.0",
+    "ghooks": "^0.2.2",
+    "jscs": "^1.7.3",
+    "jshint": "^2.5.8",
+    "jshint-stylish": "^1.0.0",
     "nsp": "^0.4.2",
-    "prova": "^1.9.0",
-    "run-sequence": "^0.3.6"
+    "prova": "^1.9.0"
   }
 }
