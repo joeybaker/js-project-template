@@ -4,7 +4,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "#prova -b -q -e -l chrome test/index.js",
+    "test": "npm run lint #&& prova -b -q -e -l chrome test/index.js",
     "tdd": "prova -b -e -l chrome test/index.js",
     "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394",
     "prePublish": "npm run requireGitClean && npm prune && npm run nsp && npm run dmn && npm run doctoc",
@@ -13,8 +13,9 @@
     "lint": "npm run jshint && npm run jscs",
     "requireGitClean": "source ./scripts.sh && git_require_clean_work_tree",
     "nsp": "nsp audit-package",
-    "dmn": "dmn gen -f . && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore&& git commit -m'update npmignore'; fi",
-    "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit -m'table of contents update'; fi",
+    "note2": "--no-verify skips the commit hook",
+    "dmn": "dmn gen -f . && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore && git commit -m'update npmignore' --no-verify; fi",
+    "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit -m'table of contents update' --no-verify; fi",
     "gitPull": "git pull --rebase origin master",
     "gitPush": "git push --follow-tags",
     "release": "npm run lint && npm run prePublish && npm run gitPull && npm version $@ && npm run gitPush && npm publish"
