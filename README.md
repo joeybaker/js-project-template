@@ -14,6 +14,7 @@
 - [Events](#events)
 - [Tests](#tests)
 - [Developing](#developing)
+  - [Requirements](#requirements)
 - [TODO](#todo)
 - [Changelog](#changelog)
   - [1.0.0](#100)
