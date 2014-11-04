@@ -13,8 +13,8 @@
     "lint": "npm run jshint && npm run jscs",
     "requireGitClean": "source ./scripts.sh && git_require_clean_work_tree",
     "nsp": "nsp audit-package",
-    "dmn": "dmn gen -f .",
-    "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore README.md CONTRIBUTING.md && git commit -m'publish prep markdown & npmignore'; fi",
+    "dmn": "dmn gen -f . && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore&& git commit -m'update npmignore'; fi",
+    "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit -m'table of contents update'; fi",
     "gitPull": "git pull --rebase origin master",
     "gitPush": "git push --follow-tags",
     "release": "npm run lint && npm run prePublish && npm run gitPull && npm version $@ && npm run gitPush && npm publish"
@@ -30,7 +30,7 @@
     "notes": "important to correct the path of npm so that the git hook doesn't error",
     "ghooks": {
       "pre-commit": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm run lint",
-      "pre-push": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm test && npm run nsp && npm run dmn",
+      "pre-push": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm test && npm run nsp && npm run dmn && npm run doctoc",
       "update": "PATH=$PATH:/usr/local/bin:/usr/local/sbin && npm install"
     }
   },
