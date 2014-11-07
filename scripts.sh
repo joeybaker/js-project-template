@@ -30,3 +30,7 @@ function git_require_clean_work_tree(){
       exit 1
   fi
 }
+
+function npm_release(){
+  npm run prePublish && npm run gitPull && npm version $@ && npm run gitPush && npm publish
+}

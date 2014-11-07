@@ -18,7 +18,8 @@
     "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit --no-verify -m'table of contents update'; fi",
     "gitPull": "git pull --rebase origin master",
     "gitPush": "git push --follow-tags",
-    "release": "npm run lint && npm run prePublish && npm run gitPull && npm version $@ && npm run gitPush && npm publish"
+    "note3": "npm script args kinda suck, we need to deal them in a real script",
+    "release": "source ./scripts.sh && npm_release"
   },
   "authors": [
     {
