@@ -40,41 +40,6 @@
   "disallowSpacesInsideParentheses": true,
   "disallowSpaceAfterObjectKeys": true,
   "disallowCommaBeforeLineBreak": true,
-  "disallowLeftStickedOperators": [
-    "?",
-    "+",
-    "-",
-    "/",
-    "*",
-    "=",
-    "==",
-    "===",
-    "!=",
-    "!==",
-    ">",
-    ">=",
-    "<",
-    "<="
-  ],
-  "requireRightStickedOperators": [
-    "!"
-  ],
-  "disallowRightStickedOperators": [
-    "?",
-    "+",
-    "/",
-    "*",
-    ":",
-    "=",
-    "==",
-    "===",
-    "!=",
-    "!==",
-    ">",
-    ">=",
-    "<",
-    "<="
-  ],
   "requireSpaceBeforeBinaryOperators": [
     "+",
     "-",
