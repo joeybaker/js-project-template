@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run lint #&& prova -b -q -e -l chrome test/index.js",
     "tdd": "prova -b -e -l chrome test/index.js",
-    "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394",
-    "prePublish": "npm run requireGitClean && npm prune && npm run nsp && npm run dmn && npm run doctoc",
+    "note1": "we can't have nice things. prepublish also runs on npm install https://github.com/npm/npm/issues/6394 in-publish hacks around this",
+    "prepublish": "in-publish && source ./scripts.sh && npm run requireGitClean && npm prune && npm run gitPull && npm run nsp && npm run dmn && npm run doctoc && npm_release && npm run gitPush || in-install",
     "jscs": "jscs .",
     "jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js",
     "lint": "npm run jshint && npm run jscs",
@@ -17,9 +17,7 @@
     "dmn": "dmn gen -f . && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add .npmignore && git commit --no-verify -m'update npmignore'; fi",
     "doctoc": "doctoc README.md && doctoc CONTRIBUTING.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add README.md CONTRIBUTING.md && git commit --no-verify -m'table of contents update'; fi",
     "gitPull": "git pull --rebase origin master",
-    "gitPush": "git push --follow-tags",
-    "note3": "npm script args kinda suck, we need to deal them in a real script",
-    "release": "source ./scripts.sh && npm_release"
+    "gitPush": "git push --follow-tags --no-verify"
   },
   "authors": [
     {
