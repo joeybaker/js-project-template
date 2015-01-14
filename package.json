@@ -43,6 +43,7 @@
     "dmn": "^1.0.5",
     "doctoc": "^0.7.1",
     "ghooks": "^0.2.2",
+    "in-publish": "^1.1.1",
     "jscs": "^1.7.3",
     "jshint": "^2.5.8",
     "jshint-stylish": "^1.0.0",
