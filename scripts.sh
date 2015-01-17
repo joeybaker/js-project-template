@@ -83,14 +83,14 @@ function git_ammend_tag(){
   git tag $(find_last_git_tag) -f
 }
 
-function get_release_tag(){
-  if [ -z "$1" ]; then
-    echo "patch"
-  else
-    echo "$1"
-  fi
-}
-
 function npm_release(){
-  npm version $(get_release_tag $1) && generate_git_changelog && git_ammend_tag &&
+  local version
+
+  if [ -z ${1:-} ]; then
+    version="patch"
+  else
+    version="$1"
+  fi
+
+  npm version $version && generate_git_changelog && git_ammend_tag && npm publish
 }
